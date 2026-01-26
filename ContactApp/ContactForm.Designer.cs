@@ -83,6 +83,7 @@
             Controls.Add(gbContact);
             Name = "ContactForm";
             Text = "Contacts";
+            Load += ContactForm_Load;
             gbContact.ResumeLayout(false);
             gbContact.PerformLayout();
             ResumeLayout(false);
