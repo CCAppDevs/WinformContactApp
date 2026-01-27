@@ -29,57 +29,137 @@
         private void InitializeComponent()
         {
             gbContact = new GroupBox();
-            textBox1 = new TextBox();
-            label1 = new Label();
-            lblContactList = new Label();
+            btnSave = new Button();
+            txtEmail = new TextBox();
+            label2 = new Label();
+            txtPhone = new TextBox();
+            lblPhone = new Label();
+            txtLastName = new TextBox();
+            lblLastName = new Label();
+            txtFirstName = new TextBox();
+            lblFirstName = new Label();
+            lbContacts = new ListBox();
             gbContact.SuspendLayout();
             SuspendLayout();
             // 
             // gbContact
             // 
+            gbContact.AutoSize = true;
             gbContact.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            gbContact.Controls.Add(textBox1);
-            gbContact.Controls.Add(label1);
+            gbContact.Controls.Add(btnSave);
+            gbContact.Controls.Add(txtEmail);
+            gbContact.Controls.Add(label2);
+            gbContact.Controls.Add(txtPhone);
+            gbContact.Controls.Add(lblPhone);
+            gbContact.Controls.Add(txtLastName);
+            gbContact.Controls.Add(lblLastName);
+            gbContact.Controls.Add(txtFirstName);
+            gbContact.Controls.Add(lblFirstName);
             gbContact.Dock = DockStyle.Top;
             gbContact.Location = new Point(0, 0);
             gbContact.Name = "gbContact";
-            gbContact.Size = new Size(484, 267);
+            gbContact.Size = new Size(499, 212);
             gbContact.TabIndex = 0;
             gbContact.TabStop = false;
             gbContact.Text = "Contact Form";
             // 
-            // textBox1
+            // btnSave
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(41, 19);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(440, 23);
-            textBox1.TabIndex = 1;
+            btnSave.Location = new Point(413, 167);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(75, 23);
+            btnSave.TabIndex = 8;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
-            // label1
+            // txtEmail
             // 
-            label1.AutoSize = true;
-            label1.Dock = DockStyle.Left;
-            label1.Location = new Point(3, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            txtEmail.Anchor = AnchorStyles.None;
+            txtEmail.Location = new Point(76, 120);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(414, 23);
+            txtEmail.TabIndex = 7;
             // 
-            // lblContactList
+            // label2
             // 
-            lblContactList.AutoSize = true;
-            lblContactList.Location = new Point(12, 206);
-            lblContactList.Name = "lblContactList";
-            lblContactList.Size = new Size(0, 15);
-            lblContactList.TabIndex = 1;
+            label2.Anchor = AnchorStyles.None;
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 120);
+            label2.Name = "label2";
+            label2.Size = new Size(36, 15);
+            label2.TabIndex = 6;
+            label2.Text = "Email";
+            // 
+            // txtPhone
+            // 
+            txtPhone.Anchor = AnchorStyles.None;
+            txtPhone.Location = new Point(76, 88);
+            txtPhone.Name = "txtPhone";
+            txtPhone.Size = new Size(414, 23);
+            txtPhone.TabIndex = 5;
+            // 
+            // lblPhone
+            // 
+            lblPhone.Anchor = AnchorStyles.None;
+            lblPhone.AutoSize = true;
+            lblPhone.Location = new Point(12, 91);
+            lblPhone.Name = "lblPhone";
+            lblPhone.Size = new Size(51, 15);
+            lblPhone.TabIndex = 4;
+            lblPhone.Text = "Phone #";
+            // 
+            // txtLastName
+            // 
+            txtLastName.Anchor = AnchorStyles.None;
+            txtLastName.Location = new Point(76, 59);
+            txtLastName.Name = "txtLastName";
+            txtLastName.Size = new Size(414, 23);
+            txtLastName.TabIndex = 3;
+            // 
+            // lblLastName
+            // 
+            lblLastName.Anchor = AnchorStyles.None;
+            lblLastName.AutoSize = true;
+            lblLastName.Location = new Point(12, 62);
+            lblLastName.Name = "lblLastName";
+            lblLastName.Size = new Size(63, 15);
+            lblLastName.TabIndex = 2;
+            lblLastName.Text = "Last Name";
+            // 
+            // txtFirstName
+            // 
+            txtFirstName.Anchor = AnchorStyles.None;
+            txtFirstName.Location = new Point(76, 30);
+            txtFirstName.Name = "txtFirstName";
+            txtFirstName.Size = new Size(414, 23);
+            txtFirstName.TabIndex = 1;
+            // 
+            // lblFirstName
+            // 
+            lblFirstName.Anchor = AnchorStyles.None;
+            lblFirstName.AutoSize = true;
+            lblFirstName.Location = new Point(12, 30);
+            lblFirstName.Name = "lblFirstName";
+            lblFirstName.Size = new Size(64, 15);
+            lblFirstName.TabIndex = 0;
+            lblFirstName.Text = "First Name";
+            // 
+            // lbContacts
+            // 
+            lbContacts.FormattingEnabled = true;
+            lbContacts.Items.AddRange(new object[] { "test 1", "test 2", "test 3" });
+            lbContacts.Location = new Point(12, 218);
+            lbContacts.Name = "lbContacts";
+            lbContacts.Size = new Size(478, 229);
+            lbContacts.TabIndex = 1;
             // 
             // ContactForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(484, 461);
-            Controls.Add(lblContactList);
+            ClientSize = new Size(499, 461);
+            Controls.Add(lbContacts);
             Controls.Add(gbContact);
             Name = "ContactForm";
             Text = "Contacts";
@@ -93,8 +173,15 @@
         #endregion
 
         private GroupBox gbContact;
-        private Label lblContactList;
-        private TextBox textBox1;
-        private Label label1;
+        private TextBox txtFirstName;
+        private Label lblFirstName;
+        private TextBox txtLastName;
+        private Label lblLastName;
+        private TextBox txtEmail;
+        private Label label2;
+        private TextBox txtPhone;
+        private Label lblPhone;
+        private Button btnSave;
+        private ListBox lbContacts;
     }
 }

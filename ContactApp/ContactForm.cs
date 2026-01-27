@@ -2,6 +2,8 @@
 
 using System.Diagnostics;
 
+#pragma warning disable WFO1000
+
 namespace ContactApp
 {
     public partial class ContactForm : Form
@@ -12,24 +14,20 @@ namespace ContactApp
         {
             InitializeComponent();
             Contacts = new List<Contact>();
+            AddContact("Jesse", "Harlan");
+            AddContact("Sarah", "Harlan");
 
-            Contacts.Add(new Contact
-            {
-                FirstName = "Jesse",
-                LastName = "Harlan",
-                PhoneNumber = "3605551212",
-                Email = "jesse.harlan@centralia.edu"
-            });
+            UpdateContactListBox();
+        }
 
-            Contacts.Add(new Contact
+        public void UpdateContactListBox()
+        {
+            // refreshes the list box with the newest contacts
+            lbContacts.Items.Clear();
+            foreach (Contact contact in Contacts)
             {
-                FirstName = "Sarah",
-                LastName = "Harlan",
-                PhoneNumber = "3605551213",
-                Email = "sarah.harlan@email.com"
-            });
-            AddContact("Ashton", "Harlan", null, "ashton@email.com");
-            AddContact(new Contact { FirstName = "Ashton", LastName = "Harlan", Email = "ashton@email.com" });
+                lbContacts.Items.Add(contact);
+            }
         }
 
         public void AddContact(
@@ -59,6 +57,25 @@ namespace ContactApp
             {
                 Debug.WriteLine(contact);
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            // capture the data
+            // create a new contact
+            Contact newContact = new Contact
+            {
+                FirstName = txtFirstName.Text,
+                LastName = txtLastName.Text,
+                PhoneNumber = txtPhone.Text,
+                Email = txtEmail.Text
+            };
+
+            // add it to the list
+            Contacts.Add(newContact);
+
+            // pull the lever to update
+            UpdateContactListBox();
         }
     }
 }
