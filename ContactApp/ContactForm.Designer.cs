@@ -153,6 +153,7 @@
             lbContacts.Name = "lbContacts";
             lbContacts.Size = new Size(478, 229);
             lbContacts.TabIndex = 1;
+            lbContacts.Click += lbContacts_Click;
             // 
             // ContactForm
             // 

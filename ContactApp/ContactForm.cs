@@ -14,8 +14,11 @@ namespace ContactApp
         {
             InitializeComponent();
             Contacts = new List<Contact>();
-            AddContact("Jesse", "Harlan");
-            AddContact("Sarah", "Harlan");
+
+            for (int i = 0; i < 100000; i++)
+            {
+                AddContact(new Contact { FirstName = $"{i}", LastName = "person" });
+            }
 
             UpdateContactListBox();
         }
@@ -53,9 +56,24 @@ namespace ContactApp
 
         private void ContactForm_Load(object sender, EventArgs e)
         {
-            foreach (var contact in Contacts)
+            //foreach (var contact in Contacts)
+            //{
+            //    Debug.WriteLine(contact);
+            //}
+        }
+
+        private void lbContacts_Click(object sender, EventArgs e)
+        {
+            Contact selectedObj = (Contact) lbContacts.SelectedItem;
+            
+            if (selectedObj != null)
             {
-                Debug.WriteLine(contact);
+                int selectedIndex = lbContacts.SelectedIndex;
+                Debug.WriteLine($"contact list box was clicked - {selectedObj}");
+                
+                selectedObj.IsContacted = true;
+
+                lbContacts.Items[selectedIndex] = selectedObj;
             }
         }
 
