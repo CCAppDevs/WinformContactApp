@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             gbContact = new GroupBox();
+            btnClear = new Button();
             btnSave = new Button();
             txtEmail = new TextBox();
             label2 = new Label();
@@ -46,6 +47,7 @@
             // 
             gbContact.AutoSize = true;
             gbContact.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            gbContact.Controls.Add(btnClear);
             gbContact.Controls.Add(btnSave);
             gbContact.Controls.Add(txtEmail);
             gbContact.Controls.Add(label2);
@@ -62,6 +64,16 @@
             gbContact.TabIndex = 0;
             gbContact.TabStop = false;
             gbContact.Text = "Contact Form";
+            // 
+            // btnClear
+            // 
+            btnClear.Location = new Point(332, 167);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(75, 23);
+            btnClear.TabIndex = 9;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Clicked;
             // 
             // btnSave
             // 
@@ -157,6 +169,7 @@
             // 
             // ContactForm
             // 
+            AcceptButton = btnSave;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(499, 461);
@@ -184,5 +197,6 @@
         private Label lblPhone;
         private Button btnSave;
         private ListBox lbContacts;
+        private Button btnClear;
     }
 }

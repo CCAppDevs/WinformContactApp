@@ -15,10 +15,10 @@ namespace ContactApp
             InitializeComponent();
             Contacts = new List<Contact>();
 
-            for (int i = 0; i < 100000; i++)
-            {
-                AddContact(new Contact { FirstName = $"{i}", LastName = "person" });
-            }
+            //for (int i = 0; i < 100000; i++)
+            //{
+            //    AddContact(new Contact { FirstName = $"{i}", LastName = "person" });
+            //}
 
             UpdateContactListBox();
         }
@@ -64,22 +64,51 @@ namespace ContactApp
 
         private void lbContacts_Click(object sender, EventArgs e)
         {
-            Contact selectedObj = (Contact) lbContacts.SelectedItem;
-            
+            Contact selectedObj = (Contact)lbContacts.SelectedItem;
+
             if (selectedObj != null)
             {
                 int selectedIndex = lbContacts.SelectedIndex;
                 Debug.WriteLine($"contact list box was clicked - {selectedObj}");
-                
+
                 selectedObj.IsContacted = true;
 
                 lbContacts.Items[selectedIndex] = selectedObj;
+
+                // show message box saying we contacted them
+                MessageBox.Show($"Contacted customer: {selectedObj.FirstName}. Marked status to contacted.", "Success");
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // capture the data
+            // validate the data, pull a ripcord if it fails validation
+            if (txtFirstName.Text.Length <= 0) // check if first name does not contains data
+            {
+                // no text, fail
+                MessageBox.Show("First name must contain at least one letter.");
+                txtFirstName.Focus();
+                return;
+            }
+
+            // validate the data, pull a ripcord if it fails validation
+            if (txtLastName.Text.Length <= 0) // check if last name does not contains data
+            {
+                // no text, fail
+                MessageBox.Show("Last name must contain at least one letter.");
+                txtLastName.Focus();
+                return;
+            }
+
+            // validate the data, pull a ripcord if it fails validation
+            if (txtEmail.Text.Length <= 0 && txtPhone.Text.Length <= 0) // check if email does not contains data 
+            {
+                // no text, fail
+                MessageBox.Show("You must have either a phone number or a contact for this customer.");
+                txtPhone.Focus();
+                return;
+            }
+
             // create a new contact
             Contact newContact = new Contact
             {
@@ -94,6 +123,22 @@ namespace ContactApp
 
             // pull the lever to update
             UpdateContactListBox();
+            ClearForm();
+            txtFirstName.Focus();
+        }
+
+        private void ClearForm()
+        {
+            txtFirstName.Clear();
+            txtLastName.Clear();
+            txtPhone.Clear();
+            txtEmail.Clear();
+        }
+
+        private void btnClear_Clicked(object sender, EventArgs e)
+        {
+            ClearForm();
+            txtFirstName.Focus();
         }
     }
 }
