@@ -20,17 +20,19 @@ namespace ContactApp
             //    AddContact(new Contact { FirstName = $"{i}", LastName = "person" });
             //}
 
-            UpdateContactListBox();
+            UpdateContactList();
         }
 
-        public void UpdateContactListBox()
+        public void UpdateContactList()
         {
             // refreshes the list box with the newest contacts
-            lbContacts.Items.Clear();
-            foreach (Contact contact in Contacts)
-            {
-                lbContacts.Items.Add(contact);
-            }
+            //lbContacts.Items.Clear();
+            //foreach (Contact contact in Contacts)
+            //{
+            //    lbContacts.Items.Add(contact);
+            //}
+
+            // TODO: create a new contact control and add it to fpContacts
         }
 
         public void AddContact(
@@ -122,7 +124,7 @@ namespace ContactApp
             Contacts.Add(newContact);
 
             // pull the lever to update
-            UpdateContactListBox();
+            UpdateContactList();
             ClearForm();
             txtFirstName.Focus();
         }
