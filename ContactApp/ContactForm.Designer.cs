@@ -172,7 +172,7 @@
             AcceptButton = btnSave;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ButtonShadow;
+            BackColor = SystemColors.Control;
             ClientSize = new Size(499, 461);
             Controls.Add(lbContacts);
             Controls.Add(gbContact);
