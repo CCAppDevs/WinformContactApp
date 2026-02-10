@@ -159,11 +159,16 @@
             // 
             // fpContacts
             // 
+            fpContacts.AutoScroll = true;
+            fpContacts.AutoSize = true;
+            fpContacts.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            fpContacts.Dock = DockStyle.Fill;
             fpContacts.FlowDirection = FlowDirection.TopDown;
-            fpContacts.Location = new Point(0, 218);
+            fpContacts.Location = new Point(0, 212);
             fpContacts.Name = "fpContacts";
-            fpContacts.Size = new Size(499, 242);
+            fpContacts.Size = new Size(499, 249);
             fpContacts.TabIndex = 1;
+            fpContacts.WrapContents = false;
             // 
             // ContactForm
             // 

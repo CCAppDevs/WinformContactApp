@@ -81,11 +81,11 @@
             // 
             lblAddress.AutoSize = true;
             lblAddress.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAddress.Location = new Point(10, 80);
+            lblAddress.Location = new Point(92, 55);
             lblAddress.Name = "lblAddress";
-            lblAddress.Size = new Size(181, 50);
+            lblAddress.Size = new Size(174, 25);
             lblAddress.TabIndex = 5;
-            lblAddress.Text = "1212 Place Ln.\r\nCentralia, WA 98531";
+            lblAddress.Text = "person@email.com";
             // 
             // lblAddressLabel
             // 
@@ -105,6 +105,7 @@
             btnMarkContacted.TabIndex = 6;
             btnMarkContacted.Text = "Contact";
             btnMarkContacted.UseVisualStyleBackColor = true;
+            btnMarkContacted.Click += btnMarkContacted_Click;
             // 
             // ContactControl
             // 
@@ -118,7 +119,7 @@
             Controls.Add(lblFullName);
             Controls.Add(lblFullNameLabel);
             Name = "ContactControl";
-            Size = new Size(401, 167);
+            Size = new Size(401, 89);
             ResumeLayout(false);
             PerformLayout();
         }

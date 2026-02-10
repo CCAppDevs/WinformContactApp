@@ -12,9 +12,25 @@ namespace ContactApp
 {
     public partial class ContactControl : UserControl
     {
-        public ContactControl()
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Contact ContactDetails { get; set; }
+
+        public ContactControl(Contact contactDetails)
         {
             InitializeComponent();
+            ContactDetails = contactDetails;
+
+            // fill in all of the details on the control using the data
+            lblFullName.Text = ContactDetails.FullName;
+            lblAddress.Text = ContactDetails.Email;
+            lblPhoneNumber.Text = ContactDetails.PhoneNumber;
+
+            // how do i trigger code on the base form?
+        }
+
+        private void btnMarkContacted_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Contacted {ContactDetails.FullName}");
         }
     }
 }
