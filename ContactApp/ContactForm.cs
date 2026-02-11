@@ -31,7 +31,9 @@ namespace ContactApp
 
             foreach (Contact contact in Contacts)
             {
-                fpContacts.Controls.Add(new ContactControl(contact));
+                var item = new ContactControl(contact);
+                item.Parent = this;
+                fpContacts.Controls.Add(item);
             }
         }
 
