@@ -39,7 +39,7 @@
             lblLastName = new Label();
             txtFirstName = new TextBox();
             lblFirstName = new Label();
-            lbContacts = new ListBox();
+            fpContacts = new FlowLayoutPanel();
             gbContact.SuspendLayout();
             SuspendLayout();
             // 
@@ -157,24 +157,27 @@
             lblFirstName.TabIndex = 0;
             lblFirstName.Text = "First Name";
             // 
-            // lbContacts
+            // fpContacts
             // 
-            lbContacts.FormattingEnabled = true;
-            lbContacts.Items.AddRange(new object[] { "test 1", "test 2", "test 3" });
-            lbContacts.Location = new Point(12, 218);
-            lbContacts.Name = "lbContacts";
-            lbContacts.Size = new Size(478, 229);
-            lbContacts.TabIndex = 1;
-            lbContacts.Click += lbContacts_Click;
+            fpContacts.AutoScroll = true;
+            fpContacts.AutoSize = true;
+            fpContacts.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            fpContacts.Dock = DockStyle.Fill;
+            fpContacts.FlowDirection = FlowDirection.TopDown;
+            fpContacts.Location = new Point(0, 212);
+            fpContacts.Name = "fpContacts";
+            fpContacts.Size = new Size(499, 249);
+            fpContacts.TabIndex = 1;
+            fpContacts.WrapContents = false;
             // 
             // ContactForm
             // 
             AcceptButton = btnSave;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ButtonShadow;
+            BackColor = SystemColors.Control;
             ClientSize = new Size(499, 461);
-            Controls.Add(lbContacts);
+            Controls.Add(fpContacts);
             Controls.Add(gbContact);
             Name = "ContactForm";
             Text = "Contacts";
@@ -197,7 +200,7 @@
         private TextBox txtPhone;
         private Label lblPhone;
         private Button btnSave;
-        private ListBox lbContacts;
         private Button btnClear;
+        private FlowLayoutPanel fpContacts;
     }
 }

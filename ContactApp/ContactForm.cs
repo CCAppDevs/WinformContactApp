@@ -15,21 +15,20 @@ namespace ContactApp
             InitializeComponent();
             Contacts = new List<Contact>();
 
-            //for (int i = 0; i < 100000; i++)
-            //{
-            //    AddContact(new Contact { FirstName = $"{i}", LastName = "person" });
-            //}
-
-            UpdateContactListBox();
+            UpdateContactList();
         }
 
-        public void UpdateContactListBox()
+        public void UpdateContactList()
         {
             // refreshes the list box with the newest contacts
-            lbContacts.Items.Clear();
+            
+            fpContacts.Controls.Clear();
+
             foreach (Contact contact in Contacts)
             {
-                lbContacts.Items.Add(contact);
+                var item = new ContactControl(contact);
+                item.Parent = this;
+                fpContacts.Controls.Add(item);
             }
         }
 
@@ -64,20 +63,22 @@ namespace ContactApp
 
         private void lbContacts_Click(object sender, EventArgs e)
         {
-            Contact selectedObj = (Contact)lbContacts.SelectedItem;
+            //Contact selectedObj = (Contact)lbContacts.SelectedItem;
 
-            if (selectedObj != null)
-            {
-                int selectedIndex = lbContacts.SelectedIndex;
-                Debug.WriteLine($"contact list box was clicked - {selectedObj}");
+            //if (selectedObj != null)
+            //{
+            //    int selectedIndex = lbContacts.SelectedIndex;
+            //    Debug.WriteLine($"contact list box was clicked - {selectedObj}");
 
-                selectedObj.IsContacted = true;
+            //    selectedObj.IsContacted = true;
 
-                lbContacts.Items[selectedIndex] = selectedObj;
+            //    lbContacts.Items[selectedIndex] = selectedObj;
 
-                // show message box saying we contacted them
-                MessageBox.Show($"Contacted customer: {selectedObj.FirstName}. Marked status to contacted.", "Success");
-            }
+            //    // show message box saying we contacted them
+            //    MessageBox.Show($"Contacted customer: {selectedObj.FirstName}. Marked status to contacted.", "Success");
+            //}
+
+            // TODO: do i even need this?
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -122,7 +123,7 @@ namespace ContactApp
             Contacts.Add(newContact);
 
             // pull the lever to update
-            UpdateContactListBox();
+            UpdateContactList();
             ClearForm();
             txtFirstName.Focus();
         }
