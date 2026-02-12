@@ -15,11 +15,6 @@ namespace ContactApp
             InitializeComponent();
             Contacts = new List<Contact>();
 
-            //for (int i = 0; i < 100000; i++)
-            //{
-            //    AddContact(new Contact { FirstName = $"{i}", LastName = "person" });
-            //}
-
             UpdateContactList();
         }
 

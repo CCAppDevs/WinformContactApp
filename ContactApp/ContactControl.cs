@@ -14,7 +14,6 @@ namespace ContactApp
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Contact ContactDetails { get; set; }
-        //private FlowLayoutPanel fpContacts;// => this.Parent as FlowLayoutPanel;
 
         public ContactControl(Contact contactDetails)
         {
@@ -29,18 +28,6 @@ namespace ContactApp
 
         private void btnMarkContacted_Click(object sender, EventArgs e)
         {
-            //// toggle the isContacted propert and the background color of the control
-            //ContactDetails.IsContacted = !ContactDetails.IsContacted;
-
-            //if (ContactDetails.IsContacted)
-            //{
-            //    this.BackColor = Color.LightGreen;
-            //} 
-            //else
-            //{
-            //    this.BackColor = SystemColors.Control;
-            //}
-
             // delete myself from the fpContacts panel on the base form
             var frm = this.Parent?.Parent as ContactForm;
 
