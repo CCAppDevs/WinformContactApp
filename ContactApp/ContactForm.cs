@@ -1,37 +1,73 @@
 
+// The following using statement is required for this code to function
+using System.ComponentModel;
 
-using System.Diagnostics;
-
+// Disable the warning on Contacts
 #pragma warning disable WFO1000
 
 namespace ContactApp
 {
     public partial class ContactForm : Form
     {
-        public List<Contact> Contacts { get; set; }
+        // Properties
 
+        // Note the type change of the list:
+        //    this is a more specific version of a List meant for this task
+        //    It contains special events that are called when the list changes (ItemAdded and ItemDeleted)
+        public BindingList<Contact> Contacts { get; set; } 
+
+        // This is a special class that is responsible for triggering what happens when events fire from the Contacts property above.
+        private BindingSource contactBindingSource;
+
+        // Constructor
         public ContactForm()
         {
             InitializeComponent();
-            Contacts = new List<Contact>();
 
-            UpdateContactList();
+            // Create the empty Contacts list
+            Contacts = new BindingList<Contact>();
+            // Create a new BindingSource
+            contactBindingSource = new BindingSource();
+            // Set the DataSource property on the binding source to Contact List
+            contactBindingSource.DataSource = Contacts;
+
+            // Bind the event handler (method) to call (invoke) when the source list changes
+            contactBindingSource.ListChanged += ContactBindingSource_ListChanged;
         }
 
-        public void UpdateContactList()
+        // Event handler to handle when the Contacts list changes.
+        //    On Item added: add a new contact control
+        //    On Item deleted: Refresh the entire list
+        private void ContactBindingSource_ListChanged(object? sender, ListChangedEventArgs e)
         {
-            // refreshes the list box with the newest contacts
+            // This method is called by the binding source and is given information about the event:
+            //     sender = The object in code triggering the change
+            //     e = Details about the event that is being fired, such as what type of change happened (add, delete, etc)
             
-            fpContacts.Controls.Clear();
-
-            foreach (Contact contact in Contacts)
+            if (e.ListChangedType == ListChangedType.ItemAdded) // handle an item being added to the list
             {
-                var item = new ContactControl(contact);
-                item.Parent = this;
-                fpContacts.Controls.Add(item);
+                var contact = Contacts[e.NewIndex];
+                AddContactControl(contact);
+            }
+            else if (e.ListChangedType == ListChangedType.ItemDeleted) // handle an item being removed from the list
+            {
+                fpContacts.Controls.Clear();
+
+                foreach (var contact in Contacts)
+                {
+                    AddContactControl(contact);
+                }
             }
         }
 
+        // Helper method to create a new contact control and add it to fpContacts
+        private void AddContactControl(Contact contact)
+        {
+            var item = new ContactControl(contact);
+            fpContacts.Controls.Add(item);
+        }
+
+        // Helper method to add a contact to the contacts list
         public void AddContact(
             string first,
             string last,
@@ -48,37 +84,10 @@ namespace ContactApp
             });
         }
 
+        // Helper method to add a contact to the contacts list
         public void AddContact(Contact contact)
         {
             Contacts.Add(contact);
-        }
-
-        private void ContactForm_Load(object sender, EventArgs e)
-        {
-            //foreach (var contact in Contacts)
-            //{
-            //    Debug.WriteLine(contact);
-            //}
-        }
-
-        private void lbContacts_Click(object sender, EventArgs e)
-        {
-            //Contact selectedObj = (Contact)lbContacts.SelectedItem;
-
-            //if (selectedObj != null)
-            //{
-            //    int selectedIndex = lbContacts.SelectedIndex;
-            //    Debug.WriteLine($"contact list box was clicked - {selectedObj}");
-
-            //    selectedObj.IsContacted = true;
-
-            //    lbContacts.Items[selectedIndex] = selectedObj;
-
-            //    // show message box saying we contacted them
-            //    MessageBox.Show($"Contacted customer: {selectedObj.FirstName}. Marked status to contacted.", "Success");
-            //}
-
-            // TODO: do i even need this?
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -119,15 +128,15 @@ namespace ContactApp
                 Email = txtEmail.Text
             };
 
-            // add it to the list
+            // add it to the list, this triggers the data binding to update fpContacts automatically.
             Contacts.Add(newContact);
 
-            // pull the lever to update
-            UpdateContactList();
+            // Clear the form so we can add a new contact
             ClearForm();
             txtFirstName.Focus();
         }
 
+        // Clear the form so we can insert a new contact
         private void ClearForm()
         {
             txtFirstName.Clear();
@@ -136,6 +145,7 @@ namespace ContactApp
             txtEmail.Clear();
         }
 
+        // event handler for clicking the clear button
         private void btnClear_Clicked(object sender, EventArgs e)
         {
             ClearForm();

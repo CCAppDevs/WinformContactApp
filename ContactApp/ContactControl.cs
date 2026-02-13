@@ -20,10 +20,10 @@ namespace ContactApp
             InitializeComponent();
             ContactDetails = contactDetails;
 
-            // fill in all of the details on the control using the data
-            lblFullName.Text = ContactDetails.FullName;
-            lblAddress.Text = ContactDetails.Email;
-            lblPhoneNumber.Text = ContactDetails.PhoneNumber;
+            // fill in all of the details on the control using data binding
+            lblFullName.DataBindings.Add("Text", ContactDetails, "FullName");
+            lblAddress.DataBindings.Add("Text", ContactDetails, "Email");
+            lblPhoneNumber.DataBindings.Add("Text", ContactDetails, "PhoneNumber");
         }
 
         private void btnMarkContacted_Click(object sender, EventArgs e)
@@ -33,8 +33,9 @@ namespace ContactApp
 
             if (frm != null)
             {
+                // reach into the form and delete this contact from the contacts list
+                // this triggers the data binding to delete the control automatically
                 frm.Contacts.Remove(ContactDetails);
-                frm.UpdateContactList();
             }
         }
     }
